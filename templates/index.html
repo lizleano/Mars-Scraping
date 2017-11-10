@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../static/assets/style.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 <style>
@@ -29,9 +29,7 @@
 		padding: 15px; 
 	}
 
-	
 </style>
-
 <body>
     <div class="container">
         <div class="jumbotron text-center">
