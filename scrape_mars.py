@@ -27,13 +27,17 @@ app = Flask(__name__)
 def scrape():
 	# import details to a python dictionary
 	# Nasa Mars News
-# Create a connection to our database
-	# conn = 'mongodb://db_user:admin@ds143245.mlab.com:43245/heroku_hsr9k4sx'
-	conn = "mongodb://localhost:27017"
-	client = pymongo.MongoClient(conn)
+	# Create a connection to heroku mongodb database
+	client = pymongo.MongoClient("mongodb://admin:adminadmin@ds143245.mlab.com:43245/heroku_hsr9k4sx")
+	db = client.heroku_hsr9k4sx
+	
 
-	# define datbase and collection
-	db = client.mars_db
+    # Create a connection to localhost
+	# conn = "mongodb://localhost:27017"
+	# client = pymongo.MongoClient(conn)
+	# db = client.mars_db
+
+	# define collection
 	mars_info = db.mars_db
 
 	news = get_mars_news_title()
@@ -56,19 +60,17 @@ def scrape():
 	mars_hemisphere = get_mars_hemisphere()
 	print(mars_hemisphere)
 
-	# post = {
-	#     "news": news,
-	#     "featured_image":featured_image,
-	#     # "mars_facts": mars_facts_filename,
-	#     "mars_weather": mars_weather,
-	#     # "mars_facts": marsHtml,
-	#     # "mars_hemisphere": mars_hemisphere,
-	#     'date': datetime.datetime.utcnow()
-	#   }
+	post = {
+	    "news": news,
+	    "featured_image":featured_image,
+	    # "mars_facts": mars_facts_filename,
+	    "mars_weather": mars_weather,
+	    "mars_facts": marsHtml,
+	    "mars_hemisphere": mars_hemisphere,
+	    'date': datetime.datetime.utcnow()
+	  }
 
-	print("done")
-
-	# db.mars_info.insert_one(post)
+	db.mars_info.insert_one(post)
 
 def get_mars_news_title():
     # URL of page to scrape
