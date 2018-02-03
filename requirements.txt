@@ -11,3 +11,5 @@ Werkzeug==0.12.2
 pandas==0.20.3
 requests==2.14.2
 pymongo==3.5.1
+bs4==0.0.1
+splinter==0.7.7
